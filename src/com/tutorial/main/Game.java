@@ -104,10 +104,11 @@ public class Game extends Canvas implements Runnable {
 		}
 
 		Graphics graphics = bs.getDrawGraphics();
-
+		graphics.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 		graphics.setColor(Color.gray);
 		graphics.fillRect(0, 0, WIDTH, HEIGHT);
 
+		
 		handler.render(graphics);
 		
 		hud.render(graphics);
