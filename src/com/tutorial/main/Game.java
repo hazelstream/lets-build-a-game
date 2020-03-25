@@ -10,15 +10,18 @@ public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1550691097823471818L;
 
-	public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
+	public static final int WIDTH = 1080, HEIGHT = WIDTH / 12 * 9;
 
 	private boolean running = false;
 	private Thread thread;
 
-	private Random r;
+	private Random random;
 	private Handler handler;
 	private HUD hud;
 
+	private float r, g, b;
+	private Color color;
+	
 	public Game() {
 		handler = new Handler();
 		
@@ -28,15 +31,18 @@ public class Game extends Canvas implements Runnable {
 		
 		hud = new HUD();
 
-		r = new Random();
+		random = new Random();
 
 		handler.addObject(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player, handler));
 
-		handler.addObject(new BasicEnemy(r.nextInt(WIDTH - 20), r.nextInt(HEIGHT - 42), ID.BasicEnemy, handler));
-		handler.addObject(new BasicEnemy(r.nextInt(WIDTH - 20), r.nextInt(HEIGHT - 42), ID.BasicEnemy, handler));
-		handler.addObject(new BasicEnemy(r.nextInt(WIDTH - 20), r.nextInt(HEIGHT - 42), ID.BasicEnemy, handler));
-		handler.addObject(new BasicEnemy(r.nextInt(WIDTH - 20), r.nextInt(HEIGHT - 42), ID.BasicEnemy, handler));
-		
+		for (int i = 0; i < 20; i++) {
+			r = random.nextFloat();
+			g = random.nextFloat();
+			b = random.nextFloat();
+			color = new Color(r, g, b);
+			
+			handler.addObject(new BasicEnemy(random.nextInt(WIDTH - 20), random.nextInt(HEIGHT - 42), ID.BasicEnemy, handler, color));
+		}	
 
 	}
 
