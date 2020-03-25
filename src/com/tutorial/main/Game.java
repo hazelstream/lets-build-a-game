@@ -14,13 +14,12 @@ public class Game extends Canvas implements Runnable {
 
 	private boolean running = false;
 	private Thread thread;
+	private Spawn spawner;
 
 	private Random random;
 	private Handler handler;
 	private HUD hud;
 
-	private float r, g, b;
-	private Color color;
 	
 	public Game() {
 		handler = new Handler();
@@ -30,19 +29,16 @@ public class Game extends Canvas implements Runnable {
 		new Window(WIDTH, HEIGHT, "Let's build a game", this);
 		
 		hud = new HUD();
+		spawner = new Spawn(handler, hud);
 
 		random = new Random();
 
 		handler.addObject(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player, handler));
 
-		for (int i = 0; i < 20; i++) {
-			r = random.nextFloat();
-			g = random.nextFloat();
-			b = random.nextFloat();
-			color = new Color(r, g, b);
+
 			
-			handler.addObject(new BasicEnemy(random.nextInt(WIDTH - 20), random.nextInt(HEIGHT - 42), ID.BasicEnemy, handler, color));
-		}	
+		handler.addObject(new BasicEnemy(random.nextInt(WIDTH - 20), random.nextInt(HEIGHT - 42), ID.BasicEnemy, handler, Color.red));
+	
 
 	}
 
@@ -96,6 +92,7 @@ public class Game extends Canvas implements Runnable {
 	private void tick() {
 		handler.tick();
 		hud.tick();
+		spawner.tick();
 	}
 
 	private void render() {

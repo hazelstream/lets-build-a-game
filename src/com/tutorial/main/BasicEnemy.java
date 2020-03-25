@@ -27,7 +27,7 @@ public class BasicEnemy extends GameObject{
 	public void tick() {
 		x += velX;
 		y += velY;
-		direction = random.nextInt(4);
+		direction = random.nextInt(3);
 		if(y <= 0 || y >= Game.HEIGHT - 42) {
 			velY *= -1;
 			velX += direction;
