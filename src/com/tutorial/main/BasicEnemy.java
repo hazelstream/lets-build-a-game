@@ -28,13 +28,14 @@ public class BasicEnemy extends GameObject{
 			velX *= -1;
 		}
 		
-		handler.addObject(new Trail(x, y, ID.Trail, Color.red, 16, 16, 0.05f, handler));
+		handler.addObject(new Trail(x, y, ID.Trail, Color.black, 16, 16, 0.05f, handler));
 	}
 
 	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.red);
 		g.fillRect(x, y, 16, 16);
+
 	}
 
 	@Override

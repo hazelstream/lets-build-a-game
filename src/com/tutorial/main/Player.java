@@ -42,7 +42,7 @@ public class Player extends GameObject {
 		//Graphics2D graphics2d = (Graphics2D) g;
 		
 		if (id == ID.Player) {
-			g.setColor(Color.pink);
+			g.setColor(Color.darkGray);
 		}
 		g.fillRect(x, y, 32, 32);
 	}
