@@ -5,6 +5,12 @@ import java.awt.Graphics;
 
 public class HUD {
 	
+	private Game game;
+	
+	public HUD(Game game) {
+		this.game = game;
+	}
+	
 	public static int HEALTH = 100;
 	
 	private int score = 0;
@@ -14,7 +20,9 @@ public class HUD {
 		
 		HEALTH = Game.clamp(HEALTH, 0, 200);
 		score++;
-		
+		if(HEALTH == 0) {
+			game.setRunning(false);
+		}
 	}
 	
 	public void render(Graphics g) {

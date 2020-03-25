@@ -6,28 +6,28 @@ import java.awt.Rectangle;
 import java.util.Random;
 
 
-public class BasicEnemy extends GameObject{
+public class FastEnemy extends GameObject{
 	
 	private Handler handler;
 	private Color color;
 	private Random random;
 	private int direction;
 
-	public BasicEnemy(int x, int y, ID id, Handler handler, Color color) {
+	public FastEnemy(int x, int y, ID id, Handler handler, Color color) {
 		super(x, y, id);
 		this.handler = handler;
 		this.color = color;
 		random = new Random();
 		
-		velX = 2;
-		velY = 2;
+		velX = 5;
+		velY = 5;
 	}
 
 	@Override
 	public void tick() {
 		x += velX;
 		y += velY;
-		direction = random.nextInt(2);
+		direction = random.nextInt(5);
 		if(y <= 0 || y >= Game.HEIGHT - 42) {
 			velY *= -1;
 			velX += direction;
@@ -37,7 +37,7 @@ public class BasicEnemy extends GameObject{
 			velY += direction;
 		}
 		
-		handler.addObject(new Trail(x, y, ID.Trail, color, 16, 16, 0.05f, handler));
+		handler.addObject(new Trail(x, y, ID.Trail, color, 16, 16, 0.1f, handler));
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package com.tutorial.main;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
@@ -28,14 +29,12 @@ public class Game extends Canvas implements Runnable {
 
 		new Window(WIDTH, HEIGHT, "Let's build a game", this);
 		
-		hud = new HUD();
+		hud = new HUD(this);
 		spawner = new Spawn(handler, hud);
 
 		random = new Random();
 
 		handler.addObject(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player, handler));
-
-
 			
 		handler.addObject(new BasicEnemy(random.nextInt(WIDTH - 20), random.nextInt(HEIGHT - 42), ID.BasicEnemy, handler, Color.red));
 	
@@ -75,7 +74,9 @@ public class Game extends Canvas implements Runnable {
 				tick();
 				delta--;
 			}
-
+			if (!running) {
+				renderLossScreen();
+			}
 			if (running) {
 				render();
 			}
@@ -113,6 +114,33 @@ public class Game extends Canvas implements Runnable {
 
 		graphics.dispose();
 		bs.show();
+	}
+	
+	private void renderLossScreen() {
+		BufferStrategy bs = this.getBufferStrategy();
+		if (bs == null) {
+			this.createBufferStrategy(3);
+			return;
+		}
+
+		Graphics graphics = bs.getDrawGraphics();
+		
+		graphics.setFont(new Font("Comic Sans MS", Font.PLAIN, 36));
+		graphics.setColor(Color.black );
+		graphics.drawString("YOU LOST", WIDTH / 2 - 75, HEIGHT / 2);
+		
+		graphics.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+		graphics.drawString("You made it to level: " + hud.getLevel(), WIDTH / 2 - 70, HEIGHT / 2 + 30);
+		graphics.dispose();
+		bs.show();
+	}
+
+	public boolean isRunning() {
+		return running;
+	}
+
+	public void setRunning(boolean running) {
+		this.running = running;
 	}
 
 	public static int clamp(int var, int min, int max) {
