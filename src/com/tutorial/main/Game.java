@@ -75,7 +75,8 @@ public class Game extends Canvas implements Runnable {
 				delta--;
 			}
 			if (!running) {
-				renderLossScreen();
+				LossScreen loss = new LossScreen(hud, WIDTH, HEIGHT, this);
+				loss.render();
 			}
 			if (running) {
 				render();
@@ -117,24 +118,6 @@ public class Game extends Canvas implements Runnable {
 		bs.show();
 	}
 	
-	private void renderLossScreen() {
-		BufferStrategy bs = this.getBufferStrategy();
-		if (bs == null) {
-			this.createBufferStrategy(3);
-			return;
-		}
-
-		Graphics graphics = bs.getDrawGraphics();
-		
-		graphics.setFont(new Font("Comic Sans MS", Font.PLAIN, 36));
-		graphics.setColor(Color.black );
-		graphics.drawString("YOU LOST", WIDTH / 2 - 75, HEIGHT / 2);
-		
-		graphics.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
-		graphics.drawString("You made it to level: " + hud.getLevel(), WIDTH / 2 - 70, HEIGHT / 2 + 30);
-		graphics.dispose();
-		bs.show();
-	}
 
 	public boolean isRunning() {
 		return running;
@@ -156,7 +139,6 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public static void main(String[] args) {
-
 		new Game();
 	}
 
