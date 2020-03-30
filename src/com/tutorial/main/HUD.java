@@ -18,7 +18,7 @@ public class HUD {
 
 	public void tick() {
 		
-		HEALTH = Game.clamp(HEALTH, 0, 200);
+		HEALTH = (int) Game.clamp(HEALTH, 0, 200);
 		score++;
 		if(HEALTH == 0) {
 			game.setRunning(false);

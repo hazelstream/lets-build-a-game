@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 
 public abstract class GameObject {
 
-	protected int x, y, velX, velY;
+	protected float x, y, velX, velY;
 	protected ID id;
 	
 	public GameObject(int x, int y, ID id) {
@@ -19,7 +19,7 @@ public abstract class GameObject {
 	public abstract void render(Graphics g);
 	public abstract Rectangle getBounds();
 
-	public int getX() {
+	public float getX() {
 		return x;
 	}
 
@@ -27,7 +27,7 @@ public abstract class GameObject {
 		this.x = x;
 	}
 
-	public int getY() {
+	public float getY() {
 		return y;
 	}
 
@@ -43,7 +43,7 @@ public abstract class GameObject {
 		this.id = id;
 	}
 
-	public int getVelX() {
+	public float getVelX() {
 		return velX;
 	}
 
@@ -51,7 +51,7 @@ public abstract class GameObject {
 		this.velX = velX;
 	}
 
-	public int getVelY() {
+	public float getVelY() {
 		return velY;
 	}
 

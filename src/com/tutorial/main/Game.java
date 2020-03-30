@@ -127,14 +127,14 @@ public class Game extends Canvas implements Runnable {
 		this.running = running;
 	}
 
-	public static int clamp(int var, int min, int max) {
+	public static float clamp(float x, int min, int max) {
 
-		if (var >= max) {
-			return var = max;
-		} else if (var <= min) {
-			return var = min;
+		if (x >= max) {
+			return x = max;
+		} else if (x <= min) {
+			return x = min;
 		}
-		return var;
+		return x;
 
 	}
 

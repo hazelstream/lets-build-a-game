@@ -44,12 +44,12 @@ public class Player extends GameObject {
 		if (id == ID.Player) {
 			g.setColor(Color.darkGray);
 		}
-		g.fillRect(x, y, 32, 32);
+		g.fillRect((int)x, (int)y, 32, 32);
 	}
 
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle(x, y, 32, 32);
+		return new Rectangle((int)x, (int)y, 32, 32);
 	}
 	
 	

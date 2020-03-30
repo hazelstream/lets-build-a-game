@@ -37,20 +37,20 @@ public class FastEnemy extends GameObject{
 			velY += direction;
 		}
 		
-		handler.addObject(new Trail(x, y, ID.Trail, color, 16, 16, 0.1f, handler));
+		handler.addObject(new Trail((int)x, (int)y, ID.Trail, color, 16, 16, 0.1f, handler));
 	}
 
 	@Override
 	public void render(Graphics g) {
 		g.setColor(color);
-		g.fillRect(x, y, 16, 16);
+		g.fillRect((int)x, (int)y, 16, 16);
 
 	}
 
 	@Override
 	public Rectangle getBounds() {
 		
-		return new Rectangle(x, y, 16, 16);
+		return new Rectangle((int)x, (int)y, 16, 16);
 	}
 
 }
