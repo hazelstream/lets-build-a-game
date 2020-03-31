@@ -27,20 +27,27 @@ public class Spawn {
 			hud.setLevel(hud.getLevel() + 1);
 
 			
-//			if (hud.getLevel() == 1) {
-//				handler.addObject(new BasicEnemy(random.nextInt(Game.WIDTH - 20), random.nextInt(Game.HEIGHT - 42), ID.BasicEnemy, handler, randomColor()));
-//			} else if(hud.getLevel() == 2) {	
-//				for (int i = 0; i < 2; i++) {
-//					handler.addObject(new BasicEnemy(random.nextInt(Game.WIDTH - 20), random.nextInt(Game.HEIGHT - 42), ID.BasicEnemy, handler, randomColor()));
-//				}
-//			} else if (hud.getLevel() == 3) {
-//				handler.addObject(new FastEnemy(random.nextInt(Game.WIDTH - 20), random.nextInt(Game.HEIGHT - 42), ID.BasicEnemy, handler, randomColor()));
-//			} else if (hud.getLevel() == 4) {
-//				handler.addObject(new FastEnemy(random.nextInt(Game.WIDTH - 20), random.nextInt(Game.HEIGHT - 42), ID.FastEnemy, handler, randomColor()));
-//				handler.addObject(new BasicEnemy(random.nextInt(Game.WIDTH - 20), random.nextInt(Game.HEIGHT - 42), ID.BasicEnemy, handler, randomColor()));
-//			} else if (hud.getLevel() == 5) {
-//				handler.addObject(new SmartEnemy(random.nextInt(Game.WIDTH - 20), random.nextInt(Game.HEIGHT - 42), ID.SmartEnemy, handler, randomColor()));
-//			}
+			if(hud.getLevel() == 2) {	
+				for (int i = 0; i < 2; i++) {
+					handler.addObject(new BasicEnemy(random.nextInt(Game.WIDTH - 20), random.nextInt(Game.HEIGHT - 42), ID.BasicEnemy, handler, randomColor()));
+				}
+			} else if (hud.getLevel() == 3) {
+				handler.addObject(new FastEnemy(random.nextInt(Game.WIDTH - 20), random.nextInt(Game.HEIGHT - 42), ID.BasicEnemy, handler, randomColor()));
+			} else if (hud.getLevel() == 4) {
+				handler.addObject(new FastEnemy(random.nextInt(Game.WIDTH - 20), random.nextInt(Game.HEIGHT - 42), ID.FastEnemy, handler, randomColor()));
+				handler.addObject(new BasicEnemy(random.nextInt(Game.WIDTH - 20), random.nextInt(Game.HEIGHT - 42), ID.BasicEnemy, handler, randomColor()));
+			} else if (hud.getLevel() == 5) {
+				handler.addObject(new SmartEnemy(random.nextInt(Game.WIDTH - 20), random.nextInt(Game.HEIGHT - 42), ID.SmartEnemy, handler, randomColor()));
+			} else if (hud.getLevel() == 6) {
+				handler.addObject(new FastEnemy(random.nextInt(Game.WIDTH - 20), random.nextInt(Game.HEIGHT - 42), ID.FastEnemy, handler, randomColor()));
+			} else if (hud.getLevel() == 7) {
+				handler.addObject(new FastEnemy(random.nextInt(Game.WIDTH - 20), random.nextInt(Game.HEIGHT - 42), ID.FastEnemy, handler, randomColor()));
+			} else if (hud.getLevel() == 8) {
+				handler.addObject(new SmartEnemy(random.nextInt(Game.WIDTH - 20), random.nextInt(Game.HEIGHT - 42), ID.SmartEnemy, handler, randomColor()));
+			} else if (hud.getLevel() == 10) {
+				handler.clearEnemies();
+				handler.addObject(new EnemyBoss((Game.WIDTH / 2) - 48, - 100, ID.EnemyBoss, handler, randomColor()));
+			}
 		}
 	}
 	
