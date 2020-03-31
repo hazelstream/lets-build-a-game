@@ -35,8 +35,8 @@ public class Game extends Canvas implements Runnable {
 		random = new Random();
 
 		handler.addObject(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player, handler));
-			
-		handler.addObject(new BasicEnemy(random.nextInt(WIDTH - 20), random.nextInt(HEIGHT - 42), ID.BasicEnemy, handler, Color.red));
+		handler.addObject(new EnemyBoss((Game.WIDTH / 2) - 48, - 100, ID.EnemyBoss, handler, Color.black));
+//		handler.addObject(new BasicEnemy(random.nextInt(WIDTH - 20), random.nextInt(HEIGHT - 42), ID.BasicEnemy, handler, Color.red));
 	
 
 	}
@@ -63,7 +63,7 @@ public class Game extends Canvas implements Runnable {
 		double ns = 1000000000 / amountOfTicks;
 		double delta = 0;
 		long timer = System.currentTimeMillis();
-		int frames = 0;
+		//int frames = 0;
 
 		while (running) {
 
@@ -81,11 +81,11 @@ public class Game extends Canvas implements Runnable {
 			if (running) {
 				render();
 			}
-			frames++;
+			//frames++;
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
 				// System.out.println("FPS: " + frames);
-				frames = 0;
+				//frames = 0;
 			}
 		}
 		stop();
