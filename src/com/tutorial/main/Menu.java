@@ -25,7 +25,7 @@ public class Menu extends MouseAdapter{
 		int my = e.getY();
 		
 		
-		
+		//play button
 		if(mouseOver(mx, my, 232, 190, 200, 64)) {
 			game.gameState = STATE.Game;
 			
@@ -33,6 +33,26 @@ public class Menu extends MouseAdapter{
 //			handler.addObject(new EnemyBoss((Game.WIDTH / 2) - 48, - 100, ID.EnemyBoss, handler, Color.black));
 			handler.addObject(new BasicEnemy(random.nextInt(Game.WIDTH - 20), random.nextInt(Game.HEIGHT - 42), ID.BasicEnemy, handler, Color.red));
 		}
+		
+		
+		//help button
+		if(mouseOver(mx, my, 232, 290, 200, 64)) {
+			game.gameState = STATE.Help;
+		}
+		
+		
+		//back for help
+		if(mouseOver(mx, my, 232, 390, 200, 64) && game.gameState == STATE.Help) {
+			game.gameState = STATE.Menu;
+			return;
+		}
+		
+		
+		//quit button
+		if(mouseOver(mx, my, 232, 390, 200, 64)) {
+			System.exit(1);
+		}
+		
 	}
 	
 	public void mouseReleased(MouseEvent e) {
@@ -58,28 +78,43 @@ public class Menu extends MouseAdapter{
 	}
 	
 	public void render(Graphics g) {
-		Font font = new Font("arial", 1, 50);
 		
-		Font font2 = new Font("arial", 1, 30);
-		
-		g.setFont(font);
-		g.setColor(Color.BLACK);
-		g.drawString("Menu", 270, 50);
-		
-		
-		g.setFont(font2);
-		
-		g.setColor(Color.WHITE);
-		g.drawString("Play", 300, 230);
-		g.drawRect(232, 190, 200, 64);
-		
+		if(game.gameState == STATE.Menu) {
+			Font font = new Font("arial", 1, 50);
+			Font font2 = new Font("arial", 1, 30);
+			
+			g.setFont(font);
+			g.setColor(Color.BLACK);
+			g.drawString("Menu", 270, 50);
+			
+			
+			g.setFont(font2);
+			
+			g.setColor(Color.WHITE);
+			g.drawString("Play", 300, 230);
+			g.drawRect(232, 190, 200, 64);
+			
 
-		g.drawString("Help", 300, 330);
-		g.drawRect(232, 290, 200, 64);
-		
+			g.drawString("Help", 300, 330);
+			g.drawRect(232, 290, 200, 64);
+			
 
-		g.drawString("Quit", 300, 430);
-		g.drawRect(232, 390, 200, 64);
+			g.drawString("Quit", 300, 430);
+			g.drawRect(232, 390, 200, 64);
+		} else if(game.gameState == STATE.Help) {
+			Font font = new Font("arial", 1, 50);
+			Font font2 = new Font("arial", 1, 30);
+			
+			g.setFont(font);
+			g.setColor(Color.BLACK);
+			g.drawString("Help", 270, 50);
+			
+			g.setColor(Color.WHITE);
+			g.setFont(font2);
+			g.drawString("Back", 300, 430);
+			g.drawRect(232, 390, 200, 64);
+		}
+		
 	}
 	
 	public void tick() {

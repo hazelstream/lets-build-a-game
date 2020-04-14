@@ -25,7 +25,8 @@ public class Game extends Canvas implements Runnable {
 	
 	public enum STATE {
 		Menu,
-		Game
+		Game,
+		Help
 	};
 	
 	public STATE gameState = STATE.Menu;
@@ -136,7 +137,7 @@ public class Game extends Canvas implements Runnable {
 		
 		if(gameState == STATE.Game) {
 			hud.render(graphics);
-		} else if (gameState == STATE.Menu) {
+		} else if (gameState == STATE.Menu || gameState == STATE.Help) {
 			menu.render(graphics);
 		}
 
