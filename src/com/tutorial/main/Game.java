@@ -14,18 +14,29 @@ public class Game extends Canvas implements Runnable {
 	public static final int WIDTH = 1080, HEIGHT = WIDTH / 12 * 9;
 
 	private boolean running = false;
+	
 	private Thread thread;
 	private Spawn spawner;
 
 	private Random random;
 	private Handler handler;
 	private HUD hud;
+	private Menu menu;
+	
+	public enum STATE {
+		Menu,
+		Game
+	};
+	
+	public STATE gameState = STATE.Menu;
 
 	
 	public Game() {
 		handler = new Handler();
-		
+		menu = new Menu(this, handler);
 		this.addKeyListener(new KeyInput(handler));
+		this.addMouseListener(menu);
+		
 
 		new Window(WIDTH, HEIGHT, "Let's build a game", this);
 		
@@ -33,10 +44,14 @@ public class Game extends Canvas implements Runnable {
 		spawner = new Spawn(handler, hud);
 
 		random = new Random();
+		
+		if(gameState == STATE.Game) {
+			handler.addObject(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player, handler));
+//			handler.addObject(new EnemyBoss((Game.WIDTH / 2) - 48, - 100, ID.EnemyBoss, handler, Color.black));
+			handler.addObject(new BasicEnemy(random.nextInt(WIDTH - 20), random.nextInt(HEIGHT - 42), ID.BasicEnemy, handler, Color.red));
+		}
 
-		handler.addObject(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player, handler));
-//		handler.addObject(new EnemyBoss((Game.WIDTH / 2) - 48, - 100, ID.EnemyBoss, handler, Color.black));
-		handler.addObject(new BasicEnemy(random.nextInt(WIDTH - 20), random.nextInt(HEIGHT - 42), ID.BasicEnemy, handler, Color.red));
+		
 	
 
 	}
@@ -93,8 +108,15 @@ public class Game extends Canvas implements Runnable {
 
 	private void tick() {
 		handler.tick();
-		hud.tick();
-		spawner.tick();
+		
+		if(gameState == STATE.Game) {
+			hud.tick();
+			spawner.tick();
+		} else if (gameState == STATE.Menu) {
+			menu.tick();
+		}
+		
+
 	}
 
 	private void render() {
@@ -112,7 +134,11 @@ public class Game extends Canvas implements Runnable {
 		
 		handler.render(graphics);
 		
-		hud.render(graphics);
+		if(gameState == STATE.Game) {
+			hud.render(graphics);
+		} else if (gameState == STATE.Menu) {
+			menu.render(graphics);
+		}
 
 		graphics.dispose();
 		bs.show();
