@@ -28,10 +28,11 @@ public class Menu extends MouseAdapter{
 		//play button
 		if(mouseOver(mx, my, 232, 190, 200, 64)) {
 			game.gameState = STATE.Game;
-			
+			handler.clearEnemies();
 			handler.addObject(new Player(Game.WIDTH / 2 - 32, Game.HEIGHT / 2 - 32, ID.Player, handler));
 //			handler.addObject(new EnemyBoss((Game.WIDTH / 2) - 48, - 100, ID.EnemyBoss, handler, Color.black));
 			handler.addObject(new BasicEnemy(random.nextInt(Game.WIDTH - 20), random.nextInt(Game.HEIGHT - 42), ID.BasicEnemy, handler, Color.red));
+			
 		}
 		
 		
